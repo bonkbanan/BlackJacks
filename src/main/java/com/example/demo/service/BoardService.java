@@ -49,9 +49,11 @@ public class BoardService {
         }else{
             whoseTurn = " It's Opponent Turn ";
         }
-        board.setMessage("Player score " + this.getGamerScore()
-                + " Dealer score " + this.getComputerScore()
-                +  whoseTurn + (getBoard().getDeck().size()));
+        board.setMessage("Player balance " + this.getGamerScore()
+                + " Dealer balance " + this.getComputerScore()
+                +  whoseTurn + (getBoard().getDeck().size())
+                + "  <h1>Score " + this.getBoard().getScore()[0]
+                + " : " + this.getBoard().getScore()[1] + "</h1> ");
         return board.getMessage();
     }
 

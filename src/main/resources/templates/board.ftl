@@ -38,7 +38,8 @@
             </#list>
         </ul>
     </div>
-        <div class="allCards">
+    <button class="newCards" onclick="location.href='/ui/board/all/newCards'">new cards</button>
+    <div class="allCards">
             <button class="giveMe" onclick="location.href='/ui/board/all/give/me'">Give me a card</button>
             <#list allCards as card>
                     <img src="${card.image}" id="card${card.id}" alt="">

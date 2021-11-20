@@ -86,4 +86,21 @@ public class BoardUIController {
         model.addAttribute("Finalmessage", service.getBoard().getFinalMessage());
         return "board";
     }
+
+    @GetMapping("/all/newCards")
+    String newCards(Model model){
+        List<Card> myCards = service.getBoard().getGamerCards();
+        List<Card> computerCards = service.getBoard().getDealerCards();
+        service.createMessage();
+        List<Card> allCards = new ArrayList<>();
+        for (int i = 0; i < service.getBoard().getDeck().size()-1; i++) {
+            allCards.add(new Card(i,"/image/back.png",3*i));
+        }
+        model.addAttribute("allCards",allCards);
+        model.addAttribute("computerCards", computerCards);
+        model.addAttribute("gamerCards", myCards);
+        model.addAttribute("message", service.getBoard().getMessage());
+        model.addAttribute("Finalmessage", service.getBoard().getFinalMessage());
+        return "board";
+    }
 }

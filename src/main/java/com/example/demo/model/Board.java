@@ -3,6 +3,7 @@ package com.example.demo.model;
 import com.example.demo.storage.Deck;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class Board {
     private List<Card> dealerCards;
     private String message;
     private String finalMessage;
+    private int[] score = new int[] {0,0};
     private boolean turn;
 
     @Autowired
@@ -65,6 +67,14 @@ public class Board {
 
     public String getMessage() {
         return message;
+    }
+
+    public int[] getScore() {
+        return score;
+    }
+
+    public void setScore(int[] score) {
+        this.score = score;
     }
 
     public void setMessage(String message) {
