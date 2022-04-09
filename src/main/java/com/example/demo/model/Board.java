@@ -23,6 +23,7 @@ public class Board {
     public Board() {
     }
 
+
     public Board(List<Card> deck, List<Card> gamerCards, List<Card> dealerCards, String message) {
         this.deck = new ArrayList<>();
         this.gamerCards = gamerCards;
