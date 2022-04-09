@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Greeting</title>
 </head>
 <body>
-    <a href="/ui/card">UI</a>
-    <br>
-    <a href="/api/card">Api</a>
-    <br>
-    <button><a href="/ui/board/all">Board</a></button>
+<div class="table">
+    <div class="board">
+        <div class="greeting">
+            <h1>Welcome to Black Jack</h1>
+            <div class="buttons">
+                <button class="start" onclick="location.href='/ui/board/all'">Start a Game</button>
+                <button class="rules" onclick="location.href='/ui/board/rules'">Rules</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

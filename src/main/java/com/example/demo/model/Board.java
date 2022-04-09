@@ -24,7 +24,7 @@ public class Board {
     }
 
     public Board(List<Card> deck, List<Card> gamerCards, List<Card> dealerCards, String message) {
-        this.deck = new ArrayList<>(originalDeck.getDeck());
+        this.deck = new ArrayList<>();
         this.gamerCards = gamerCards;
         this.dealerCards = dealerCards;
         this.message = message;

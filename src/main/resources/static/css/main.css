@@ -1,5 +1,6 @@
 body {
-    background-color: green;
+    background: url("/image/background.jpeg");
+    background-size: 2750px ;
 }
 
 li {
@@ -12,25 +13,41 @@ ul {
     margin-top:30px;
     display: flex;
     flex-direction: row;
+    padding-inline-start: 10px
 }
 
-h3{
+h3,h2,h1{
     color: white;
+    font-family:"Sansita Swashed";
+
+
+}
+
+.message{
+    width: 450px;
+}
+
+.header{
+    display: flex;
+}
+
+.info{
+    margin: 0 auto;
+    margin-left: 0px;
+}
+
+.main{
+    display: flex;
 }
 
 img {
     height: 130px;
 }
 
-.table{
-    display: flex;
-    flex-direction: row;
-}
-
 .board {
-    width: 62%;
+    width: 80%;
     height: 360px;
-    background: green;
+    background: transparent;
     border: solid 5px brown;
     border-radius: 251px;
     padding: 40px;
@@ -57,14 +74,15 @@ img {
     z-index: 1;
     width: 50%;
     margin: 0 auto;
+    background-color: brown;
 }
 
 .allCards{
     display: flex;
     align-items: center;
     position: relative;
-    margin-right: 60px;
-    width: 180px;
+    margin-right: 20px;
+    width: 220px;
 }
 
 .finalMessage{
@@ -73,5 +91,38 @@ img {
 }
 
 .newCards{
-    height: 21px;
+    height: 35px;
+    width: 150px;
+
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 40px;
+    width: 120px;
+    font-family:"Sansita Swashed";
+
+}
+
+button{
+    background: transparent;
+    border: solid 2px brown;
+    border-radius: 50px;
+    width: 100px;
+    margin: 0 auto;
+    transition: 1.2s;
+    color:white;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-family:"Sansita Swashed";
+}
+
+
+.buttons button:hover{
+    width: 160px;
+    height: 55px;
+    transition: 1.2s;
+    padding: 0px 10px 3px 10px;
+    background-color: #009b6f;
 }

@@ -26,11 +26,8 @@ public class BoardService {
     }
 
     public int getGamerScore(){
-        int score = 0;
-        for (int i = 0; i < board.getGamerCards().size(); i++) {
-            score += board.getGamerCards().get(i).getValue();
-        }
-        return score;
+        return board.getGamerCards().stream()
+                .mapToInt(Card::getValue).sum();
     }
 
     public int getComputerScore(){
@@ -51,7 +48,7 @@ public class BoardService {
         }
         board.setMessage("Player balance " + this.getGamerScore()
                 + " Dealer balance " + this.getComputerScore()
-                +  whoseTurn + (getBoard().getDeck().size())
+                +  whoseTurn + "  <h2> " + (getBoard().getDeck().size()) + " In stack</h2> "
                 + "  <h1>Score " + this.getBoard().getScore()[0]
                 + " : " + this.getBoard().getScore()[1] + "</h1> ");
         return board.getMessage();
@@ -62,10 +59,32 @@ public class BoardService {
     }
 
     public void createNewGame(){
+        List<Card> copied = new ArrayList<>();
+        if(board.getDeck() != null){
+            copied.addAll(board.getDeck());
+        }else{
+            copied.addAll(originalDeck.getDeck());
+        }
+        int[] array = board.getScore();
         this.board = new Board();
         board.setDealerCards(new ArrayList<>());
         board.setGamerCards(new ArrayList<>());
-        board.setDeck(originalDeck.getDeck());
+        board.setDeck(copied);
+        board.setScore(array);
+        board.setTurn(true);
+        createMessage();
+        this.shufflerDeck();
+        board.setFinalMessage(" ");
+    }
+
+    public void generateNewGame(){
+        List<Card> copied = new ArrayList<>();
+        copied.addAll(originalDeck.getDeck());
+        this.board = new Board();
+        board.setDealerCards(new ArrayList<>());
+        board.setGamerCards(new ArrayList<>());
+        board.setDeck(copied);
+        board.setScore(new int[2]);
         board.setTurn(true);
         createMessage();
         this.shufflerDeck();
@@ -83,11 +102,19 @@ public class BoardService {
                 board.getDeck().remove(lastIndex);
                 createMessage();
                 if(getGamerScore()>21){
-                    board.setFinalMessage("You Lose!!!!");
                     board.setTurn(false);
                     this.giveCardToComputer();
                 }
             }
+        }else {
+            if (lastIndex >= 0) {
+                createNewGame();
+                giveCardToGamer();
+            }
+        }
+        if(lastIndex == -1  && getBoard().getDeck().isEmpty()){
+            generateNewGame();
+            giveCardToGamer();
         }
     }
 
@@ -99,22 +126,25 @@ public class BoardService {
                 board.getDealerCards().add(card);
                 board.getDeck().remove(lastIndex);
             }
-            createMessage();
-            if(21 - this.getGamerScore() < 21 - this.getComputerScore()){
+            if((21 - this.getGamerScore() < 21 - this.getComputerScore() && this.getGamerScore()<22)||(this.getComputerScore() > 21 && this.getGamerScore() < 22)){
                 board.setFinalMessage("You win!!!");
+                board.getScore()[0]+=1;
+                createMessage();
+                return;
             }
-            if(this.getComputerScore() > 21 && this.getGamerScore() < 22){
-                board.setFinalMessage("You win!!!");
+            if(this.getGamerScore() > 21 || (21 - this.getGamerScore() > 21
+                    - this.getComputerScore())){
+                board.setFinalMessage("You Lose!!!!");
+                board.getScore()[1]+=1;
+                createMessage();
+                return;
             }else{
-                if(this.getGamerScore() > 21 || (21 - this.getGamerScore() > 21
-                        - this.getComputerScore())){
-                    board.setFinalMessage("You Lose!!!!");
-                }else{
-                    if(this.getComputerScore() == this.getGamerScore()){
-                        board.setFinalMessage("Draw");
-                    }
+                if(this.getComputerScore() == this.getGamerScore()){
+                    board.setFinalMessage("Draw");
+                    createMessage();
+                    return;
                 }
             }
+            }
         }
-    }
 }

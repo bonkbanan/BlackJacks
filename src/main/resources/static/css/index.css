@@ -1,0 +1,63 @@
+body{
+    background: url("/image/background.jpeg");
+    background-size: 2750px ;
+}
+.board {
+    width: 80%;
+    height: 70%;
+    background: transparent;
+    border: solid 6px brown;
+    border-radius: 251px;
+    padding: 40px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.table{
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+h1,h3{
+    color: white;
+    font-family:"Sansita Swashed";
+
+}
+
+.buttons{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 320px;
+    margin: 0 auto;
+}
+
+button{
+    background: transparent;
+    border: solid 2px brown;
+    height: 40px;
+    border-radius: 50px;
+    width: 230px;
+    margin: 0 auto;
+    transition: 1.2s;
+    color:white;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-family:"Sansita Swashed";
+
+}
+.start:hover,.rules:hover{
+    width: 250px;
+    height: 60px;
+    transition: 1.2s;
+    padding: 0px 10px 3px 10px;
+    background-color: #009b6f;
+    font-family:"Sansita Swashed";
+
+}
+
+li{
+    color: white;
+}
