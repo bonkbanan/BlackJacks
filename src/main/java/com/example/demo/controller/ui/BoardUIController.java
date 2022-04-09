@@ -18,8 +18,7 @@ public class BoardUIController {
     @Autowired
     BoardService service;
 
-    @GetMapping("/all")
-    String getBoard(Model model){
+    public String trash(Model model){
         List<Card> myCards = service.getBoard().getGamerCards();
         List<Card> computerCards = service.getBoard().getDealerCards();
         List<Card> allCards = new ArrayList<>();
@@ -32,58 +31,30 @@ public class BoardUIController {
         model.addAttribute("message",service.getBoard().getMessage());
         model.addAttribute("Finalmessage", service.getBoard().getFinalMessage());
         return "board";
+    }
+
+    @GetMapping("/all")
+    String getBoard(Model model){
+        return trash(model);
     }
 
     @GetMapping("/all/give/me")
     String getLastCard(Model model){
         service.giveCardToGamer();
-        List<Card> myCards = service.getBoard().getGamerCards();
-        List<Card> computerCards = service.getBoard().getDealerCards();
-        List<Card> allCards = new ArrayList<>();
-        for (int i = 0; i < service.getBoard().getDeck().size()-1; i++) {
-            allCards.add(new Card(i,"/image/back.png",3*i));
-        }
-        model.addAttribute("allCards",allCards);
-        model.addAttribute("computerCards",computerCards);
-        model.addAttribute("gamerCards",myCards);
-        model.addAttribute("message",service.getBoard().getMessage());
-        model.addAttribute("Finalmessage", service.getBoard().getFinalMessage());
-        return "board";
+        return trash(model);
     }
 
     @GetMapping("/all/stop")
     String Stop(Model model){
-        List<Card> myCards = service.getBoard().getGamerCards();
         service.getBoard().setTurn(false);
         service.giveCardToComputer();
-        List<Card> computerCards = service.getBoard().getDealerCards();
-        List<Card> allCards = new ArrayList<>();
-        for (int i = 0; i < service.getBoard().getDeck().size()-1; i++) {
-            allCards.add(new Card(i,"/image/back.png",3*i));
-        }
-        model.addAttribute("allCards",allCards);
-        model.addAttribute("computerCards", computerCards);
-        model.addAttribute("gamerCards", myCards);
-        model.addAttribute("message", service.getBoard().getMessage());
-        model.addAttribute("Finalmessage", service.getBoard().getFinalMessage());
-        return "board";
+        return trash(model);
     }
 
     @GetMapping("/all/newCards")
     String newCards(Model model){
         service.generateNewGame();
-        List<Card> myCards = service.getBoard().getGamerCards();
-        List<Card> computerCards = service.getBoard().getDealerCards();
-        List<Card> allCards = new ArrayList<>();
-        for (int i = 0; i < service.getBoard().getDeck().size()-1; i++) {
-            allCards.add(new Card(i,"/image/back.png",3*i));
-        }
-        model.addAttribute("allCards",allCards);
-        model.addAttribute("computerCards", computerCards);
-        model.addAttribute("gamerCards", myCards);
-        model.addAttribute("message", service.getBoard().getMessage());
-        model.addAttribute("Finalmessage", service.getBoard().getFinalMessage());
-        return "board";
+        return trash(model);
     }
 
     @GetMapping("/rules")
